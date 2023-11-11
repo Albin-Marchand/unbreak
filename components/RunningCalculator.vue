@@ -1,69 +1,29 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white p-8 rounded shadow-md w-full max-w-md">
-      <h1 class="text-3xl font-semibold mb-6 text-gray-800">
-        Calculatrice de Course à Pied
-      </h1>
+  <div class="container">
+    <h1>Calculatrice de course à pied</h1>
 
-      <div class="mb-4">
-        <label for="distance" class="block text-gray-600 text-sm mb-2"
-          >Distance (en kilomètres):</label
-        >
-        <input
-          type="number"
-          v-model="distance"
-          id="distance"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        />
-      </div>
+    <div>
+      <label for="distance">Distance (km): </label>
+      <input v-model="distance" type="number" step="0.01" id="distance" />
+    </div>
 
-      <div class="mb-4">
-        <label for="hours" class="block text-gray-600 text-sm mb-2"
-          >Temps (heures):</label
-        >
-        <input
-          type="number"
-          v-model="hours"
-          id="hours"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        />
-      </div>
+    <div>
+      <label for="hours">Heures: </label>
+      <input v-model="hours" type="number" id="hours" />
+      <label for="minutes">Minutes: </label>
+      <input v-model="minutes" type="number" id="minutes" />
+      <label for="seconds">Secondes: </label>
+      <input v-model="seconds" type="number" id="seconds" />
+    </div>
 
-      <div class="mb-4">
-        <label for="minutes" class="block text-gray-600 text-sm mb-2"
-          >Temps (minutes):</label
-        >
-        <input
-          type="number"
-          v-model="minutes"
-          id="minutes"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        />
-      </div>
+    <div>
+      <button @click="calculate">Calculer</button>
+    </div>
 
-      <div class="mb-4">
-        <label for="seconds" class="block text-gray-600 text-sm mb-2"
-          >Temps (secondes):</label
-        >
-        <input
-          type="number"
-          v-model="seconds"
-          id="seconds"
-          class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-        />
-      </div>
-
-      <button
-        @click="calculate"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded align-content: center"
-      >
-        Calculer
-      </button>
-
-      <p v-if="calculated" class="mt-4 text-gray-800">
-        Vitesse Moyenne: {{ speed }} km/h <br />
-        Allure: {{ pace }} min/km
-      </p>
+    <div v-if="result">
+      <h2>Résultats :</h2>
+      <p>Vitesse moyenne: {{ result.speed.toFixed(2) }} km/h</p>
+      <p>Allure: {{ result.pace.toFixed(2) }} min/km</p>
     </div>
   </div>
 </template>
@@ -76,25 +36,81 @@ export default {
       hours: 0,
       minutes: 0,
       seconds: 0,
-      calculated: false,
-      speed: 0,
-      pace: 0,
+      result: null,
     };
   },
   methods: {
     calculate() {
-      const totalTimeInMinutes =
-        parseInt(this.hours) * 60 +
-        parseInt(this.minutes) +
-        parseInt(this.seconds) / 60;
-      this.speed = (this.distance / totalTimeInMinutes).toFixed(2);
-      this.pace = (totalTimeInMinutes / this.distance).toFixed(2);
-      this.calculated = true;
+      const totalSeconds =
+        parseInt(this.hours) * 3600 +
+        parseInt(this.minutes) * 60 +
+        parseInt(this.seconds);
+
+      const speed = this.distance / (totalSeconds / 3600);
+      const pace = totalSeconds / this.distance / 60;
+
+      this.result = {
+        speed,
+        pace,
+      };
     },
   },
 };
 </script>
 
 <style scoped>
-/* Ajoutez des styles Tailwind CSS ici si nécessaire */
+.container {
+  font-family: "Arial", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+button {
+  background-color: #00a699;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #007d8c;
+}
+
+h2 {
+  margin-top: 20px;
+  color: #333;
+}
 </style>
