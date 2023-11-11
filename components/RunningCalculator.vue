@@ -1,29 +1,31 @@
 <template>
-  <div class="container">
-    <h1>Calculatrice de course à pied</h1>
+  <div>
+    <div class="container">
+      <h1>Calculatrice de course à pied</h1>
 
-    <div>
-      <label for="distance">Distance (km): </label>
-      <input v-model="distance" type="number" step="0.01" id="distance" />
-    </div>
+      <div>
+        <label for="distance">Distance (km): </label>
+        <input v-model="distance" type="number" step="0.01" id="distance" />
+      </div>
 
-    <div>
-      <label for="hours">Heures: </label>
-      <input v-model="hours" type="number" id="hours" />
-      <label for="minutes">Minutes: </label>
-      <input v-model="minutes" type="number" id="minutes" />
-      <label for="seconds">Secondes: </label>
-      <input v-model="seconds" type="number" id="seconds" />
-    </div>
+      <div>
+        <label for="hours">Heures: </label>
+        <input v-model="hours" type="number" id="hours" />
+        <label for="minutes">Minutes: </label>
+        <input v-model="minutes" type="number" id="minutes" />
+        <label for="seconds">Secondes: </label>
+        <input v-model="seconds" type="number" id="seconds" />
+      </div>
 
-    <div>
-      <button @click="calculate">Calculer</button>
-    </div>
+      <div>
+        <button @click="calculate">Calculer</button>
+      </div>
 
-    <div v-if="result">
-      <h2>Résultats :</h2>
-      <p>Vitesse moyenne: {{ result.speed.toFixed(2) }} km/h</p>
-      <p>Allure: {{ result.pace.toFixed(2) }} min/km</p>
+      <div v-if="result">
+        <h2>Résultats :</h2>
+        <p>Vitesse moyenne: {{ result.speed.toFixed(2) }} km/h</p>
+        <p>Allure: {{ result.pace }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -41,17 +43,19 @@ export default {
   },
   methods: {
     calculate() {
-      const totalSeconds =
-        parseInt(this.hours) * 3600 +
-        parseInt(this.minutes) * 60 +
-        parseInt(this.seconds);
+      const totalMinutes =
+        parseInt(this.hours) * 60 +
+        parseInt(this.minutes) +
+        parseInt(this.seconds) / 60;
 
-      const speed = this.distance / (totalSeconds / 3600);
-      const pace = totalSeconds / this.distance / 60;
+      const pace = totalMinutes / this.distance;
+
+      const paceMinutes = Math.floor(pace);
+      const paceSeconds = Math.round((pace - paceMinutes) * 60);
 
       this.result = {
-        speed,
-        pace,
+        speed: this.distance / (totalMinutes / 60),
+        pace: `${paceMinutes}'${paceSeconds}" min/km`,
       };
     },
   },
