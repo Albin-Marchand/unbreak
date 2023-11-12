@@ -5,61 +5,70 @@
 
       <div>
         <label for="distance">Distance (km): </label>
-        <input v-model="distance" type="number" step="0.01" id="distance" />
+        <input v-model="objParametersRunningCalculator.distance" type="number" step="0.01" id="distance" />
       </div>
 
       <div>
         <label for="hours">Heures: </label>
-        <input v-model="hours" type="number" id="hours" />
+        <input v-model="objParametersRunningCalculator.hours" type="number" id="hours" />
         <label for="minutes">Minutes: </label>
-        <input v-model="minutes" type="number" id="minutes" />
+        <input v-model="objParametersRunningCalculator.minutes" type="number" id="minutes" />
         <label for="seconds">Secondes: </label>
-        <input v-model="seconds" type="number" id="seconds" />
+        <input v-model="objParametersRunningCalculator.seconds" type="number" id="seconds" />
       </div>
 
       <div>
         <button @click="calculate">Calculer</button>
       </div>
 
-      <div v-if="result">
+      <div
+        v-if="
+          typeof objParametersRunningCalculator.result.speed === 'number' &&
+          objParametersRunningCalculator.result.speed !== 0
+        "
+      >
         <h2>Résultats :</h2>
-        <p>Vitesse moyenne: {{ result.speed.toFixed(2) }} km/h</p>
-        <p>Allure: {{ result.pace }}</p>
+        <p>
+          Vitesse moyenne:
+          {{
+            isNaN(objParametersRunningCalculator.result.speed.toFixed(2))
+              ? 0
+              : objParametersRunningCalculator.result.speed.toFixed(2)
+          }}
+          km/h
+        </p>
+        <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      distance: 0,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      result: null,
-    };
-  },
-  methods: {
-    calculate() {
-      const totalMinutes =
-        parseInt(this.hours) * 60 +
-        parseInt(this.minutes) +
-        parseInt(this.seconds) / 60;
+<script setup>
+const objParametersRunningCalculator = ref({
+  distance: 0,
+  hours: 0,
+  minutes: 0,
+  seconds: 0,
+  result: { speed: 0, pace: "" },
+});
 
-      const pace = totalMinutes / this.distance;
-
-      const paceMinutes = Math.floor(pace);
-      const paceSeconds = Math.round((pace - paceMinutes) * 60);
-
-      this.result = {
-        speed: this.distance / (totalMinutes / 60),
-        pace: `${paceMinutes}'${paceSeconds}" min/km`,
-      };
-    },
-  },
-};
+function calculate() {
+  const totalMinutes = parseInt(
+    objParametersRunningCalculator.value.hours * 60 +
+      parseInt(objParametersRunningCalculator.value.minutes) +
+      parseInt(objParametersRunningCalculator.value.seconds) / 60
+  );
+  const pace = totalMinutes / objParametersRunningCalculator.value.distance;
+  const paceMinutes = Math.floor(pace);
+  const paceSeconds = Math.round((pace - paceMinutes) * 60);
+  objParametersRunningCalculator.value.result = {
+    speed: objParametersRunningCalculator.value.distance / (totalMinutes / 60),
+    pace: isNaN(paceMinutes) && isNaN(paceSeconds) ? 0 + "min/km" : `${paceMinutes}'${paceSeconds}" min/km`,
+  };
+}
+onMounted(() => {
+  console.log("objParametersRunningCalculator => ", objParametersRunningCalculator.value);
+});
 </script>
 
 <style scoped>
