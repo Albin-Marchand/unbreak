@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Calculatrice de course à pied</h1>
+    <h1>Calculatrice d'allure de course</h1>
 
     <div>
       <label for="distance">Distance (km): </label>
@@ -74,7 +74,7 @@ onMounted(() => {
 
 <style scoped>
 .container {
-  font-family: "Arial", sans-serif;
+  /* font-family: "Arial", sans-serif; */
   background-color: #f5f5f5;
   margin: 0;
   padding: 0;
@@ -87,6 +87,7 @@ onMounted(() => {
 h1 {
   color: #333;
   text-align: center;
+  font-weight: bold;
 }
 
 label {
