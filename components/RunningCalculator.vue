@@ -1,49 +1,49 @@
 <template>
-  <div>
-    <div class="container">
-      <h1>Calculatrice de course à pied</h1>
+  <div class="container">
+    <h1>Calculatrice de course à pied</h1>
 
-      <div>
-        <label for="distance">Distance (km): </label>
-        <input v-model="objParametersRunningCalculator.distance" type="number" step="0.01" id="distance" />
-      </div>
+    <div>
+      <label for="distance">Distance (km): </label>
+      <input v-model="objParametersRunningCalculator.distance" type="number" step="0.01" id="distance" />
+    </div>
 
-      <div>
-        <label for="hours">Heures: </label>
-        <input v-model="objParametersRunningCalculator.hours" type="number" id="hours" />
-        <label for="minutes">Minutes: </label>
-        <input v-model="objParametersRunningCalculator.minutes" type="number" id="minutes" />
-        <label for="seconds">Secondes: </label>
-        <input v-model="objParametersRunningCalculator.seconds" type="number" id="seconds" />
-      </div>
+    <div>
+      <label for="hours">Heures: </label>
+      <input v-model="objParametersRunningCalculator.hours" type="number" id="hours" />
+      <label for="minutes">Minutes: </label>
+      <input v-model="objParametersRunningCalculator.minutes" type="number" id="minutes" />
+      <label for="seconds">Secondes: </label>
+      <input v-model="objParametersRunningCalculator.seconds" type="number" id="seconds" />
+    </div>
 
-      <div>
-        <button @click="calculate">Calculer</button>
-      </div>
+    <div>
+      <button @click="calculate">Calculer</button>
+    </div>
 
-      <div
-        v-if="
-          typeof objParametersRunningCalculator.result.speed === 'number' &&
-          objParametersRunningCalculator.result.speed !== 0
-        "
-      >
-        <h2>Résultats :</h2>
-        <p>
-          Vitesse moyenne:
-          {{
-            isNaN(objParametersRunningCalculator.result.speed.toFixed(2))
-              ? 0
-              : objParametersRunningCalculator.result.speed.toFixed(2)
-          }}
-          km/h
-        </p>
-        <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
-      </div>
+    <div
+      v-if="
+        typeof objParametersRunningCalculator.result.speed === 'number' &&
+        objParametersRunningCalculator.result.speed !== 0
+      "
+    >
+      <h2>Résultats :</h2>
+      <p>
+        Vitesse moyenne:
+        {{
+          isNaN(objParametersRunningCalculator.result.speed.toFixed(2))
+            ? 0
+            : objParametersRunningCalculator.result.speed.toFixed(2)
+        }}
+        km/h
+      </p>
+      <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
+import { ref, onMounted } from "vue";
+
 const objParametersRunningCalculator = ref({
   distance: 0,
   hours: 0,
@@ -67,6 +67,7 @@ function calculate() {
   };
 }
 onMounted(() => {
+  console.log(process.env.NODE_ENV);
   console.log("objParametersRunningCalculator => ", objParametersRunningCalculator.value);
 });
 </script>
@@ -81,15 +82,11 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
 }
 h1 {
   color: #333;
   text-align: center;
-}
-
-div {
-  margin-bottom: 15px;
 }
 
 label {
