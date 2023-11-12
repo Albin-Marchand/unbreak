@@ -7,7 +7,7 @@
       </div>
       <div>Calcul d'allure</div>
     </div>
-    <div v-else class="header_mobile">
+    <div v-if="currentWidth <= 700" class="header_mobile">
       <div class="burger_menu_wrapper" @click="openedMobileMenu()">
         <img v-if="!menuMobileIsOpened" class="burger_icon" src="@/assets/images/icons/menu_burger.png" alt="" />
         <img v-else class="close_icon" src="@/assets/images/icons/fermer.png" alt="" />
@@ -37,6 +37,8 @@ function obtenirLargeurEcran() {
 }
 
 onMounted(() => {
+  currentWidth.value = obtenirLargeurEcran();
+  console.log("currentWidth : => ", currentWidth.value);
   window.addEventListener("resize", () => {
     currentWidth.value = obtenirLargeurEcran();
     console.log("currentWidth : => ", currentWidth.value);
