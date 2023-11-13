@@ -43,6 +43,9 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
+import { usePacesStore } from "@/stores/paces";
+
+const paces = usePacesStore();
 
 const objParametersRunningCalculator = ref({
   distance: 0,
@@ -69,6 +72,7 @@ function calculate() {
 onMounted(() => {
   console.log(process.env.NODE_ENV);
   console.log("objParametersRunningCalculator => ", objParametersRunningCalculator.value);
+  console.log("Store =>", paces.paces);
 });
 </script>
 
