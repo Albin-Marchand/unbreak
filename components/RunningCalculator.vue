@@ -4,16 +4,33 @@
 
     <div>
       <label for="distance">Distance (km): </label>
-      <input v-model="objParametersRunningCalculator.distance" type="number" step="0.01" id="distance" />
+      <input
+        v-model="objParametersRunningCalculator.distance"
+        type="number"
+        step="0.01"
+        id="distance"
+      />
     </div>
 
     <div>
       <label for="hours">Heures: </label>
-      <input v-model="objParametersRunningCalculator.hours" type="number" id="hours" />
+      <input
+        v-model="objParametersRunningCalculator.hours"
+        type="number"
+        id="hours"
+      />
       <label for="minutes">Minutes: </label>
-      <input v-model="objParametersRunningCalculator.minutes" type="number" id="minutes" />
+      <input
+        v-model="objParametersRunningCalculator.minutes"
+        type="number"
+        id="minutes"
+      />
       <label for="seconds">Secondes: </label>
-      <input v-model="objParametersRunningCalculator.seconds" type="number" id="seconds" />
+      <input
+        v-model="objParametersRunningCalculator.seconds"
+        type="number"
+        id="seconds"
+      />
     </div>
 
     <div>
@@ -66,12 +83,18 @@ function calculate() {
   const paceSeconds = Math.round((pace - paceMinutes) * 60);
   objParametersRunningCalculator.value.result = {
     speed: objParametersRunningCalculator.value.distance / (totalMinutes / 60),
-    pace: isNaN(paceMinutes) && isNaN(paceSeconds) ? 0 + "min/km" : `${paceMinutes}'${paceSeconds}" min/km`,
+    pace:
+      isNaN(paceMinutes) && isNaN(paceSeconds)
+        ? 0 + "min/km"
+        : `${paceMinutes}'${paceSeconds}" min/km`,
   };
 }
 onMounted(() => {
   console.log(process.env.NODE_ENV);
-  console.log("objParametersRunningCalculator => ", objParametersRunningCalculator.value);
+  console.log(
+    "objParametersRunningCalculator => ",
+    objParametersRunningCalculator.value
+  );
   console.log("Store =>", paces.paces);
 });
 </script>
