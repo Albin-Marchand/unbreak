@@ -1,20 +1,34 @@
 <template>
   <div class="layout_wrapper">
-    <div v-if="currentWidth > 700" class="header">
+    <!-- <div v-if="currentWidth > 700" class="header">
       <div class="title_app" @click="$router.push('/')">
-        <div class="title">Unbreak</div>
-        <div class="dot_logo"></div>
+        <div class="title">Unbreak.</div>
       </div>
       <div>Calcul d'allure</div>
+    </div> -->
+    <div class="h-20 bg-black text-white flex items-center">
+      <div class="text-5xl font-extrabold pl-5">Unbreak.</div>
+      <!-- <div class="burger_menu_wrapper" @click="openedMobileMenu()">
+        <img
+          v-if="!menuMobileIsOpened"
+          class="burger_icon"
+          src="@/assets/images/icons/menu_burger.png"
+          alt=""
+        />
+        <img
+          v-else
+          class="close_icon"
+          src="@/assets/images/icons/fermer.png"
+          alt=""
+        />
+      </div> -->
     </div>
-    <div v-if="currentWidth <= 700" class="header_mobile">
-      <div class="burger_menu_wrapper" @click="openedMobileMenu()">
-        <img v-if="!menuMobileIsOpened" class="burger_icon" src="@/assets/images/icons/menu_burger.png" alt="" />
-        <img v-else class="close_icon" src="@/assets/images/icons/fermer.png" alt="" />
-      </div>
-      <div class="title_mobile_app">Unbreak</div>
+    <div
+      class="modal_menu"
+      :class="[menuMobileIsOpened ? 'active' : 'desactive']"
+    >
+      libellé du futur menu à définir
     </div>
-    <div class="modal_menu" :class="[menuMobileIsOpened ? 'active' : 'desactive']">libellé du futur menu à définir</div>
     <slot />
   </div>
 </template>
@@ -31,7 +45,10 @@ const openedMobileMenu = () => {
 };
 
 function obtenirLargeurEcran() {
-  var widthScreen = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  var widthScreen =
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
   return widthScreen;
 }
@@ -79,15 +96,17 @@ watchEffect(() => {
 }
 .burger_icon {
   width: 30px;
-  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(102%);
+  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%)
+    contrast(102%);
 }
 .close_icon {
   width: 40px;
-  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(102%);
+  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%)
+    contrast(102%);
 }
 .title_mobile_app {
-  font-weight: bold;
-  font-size: 28px;
+  /* font-weight: bold;
+  font-size: 28px; */
 }
 
 .modal_menu {

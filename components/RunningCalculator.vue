@@ -1,6 +1,11 @@
 <template>
-  <div class="container">
-    <h1>Calculatrice d'allure de course</h1>
+  <div class="h-full w-full flex flex-col justify-evenly justify-center px-6">
+    <div class="text-center">
+      Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
+      kilometre. Il vous suffit de rentrer la distance de course et le chonro à
+      réaliser et le tour est joué !
+    </div>
+    <h1 class="text-2xl font-extrabold">Calculatrice d'allure de course</h1>
 
     <div>
       <label for="distance">Distance (km): </label>
@@ -12,29 +17,42 @@
       />
     </div>
 
-    <div>
-      <label for="hours">Heures: </label>
-      <input
-        v-model="objParametersRunningCalculator.hours"
-        type="number"
-        id="hours"
-      />
-      <label for="minutes">Minutes: </label>
-      <input
-        v-model="objParametersRunningCalculator.minutes"
-        type="number"
-        id="minutes"
-      />
-      <label for="seconds">Secondes: </label>
-      <input
-        v-model="objParametersRunningCalculator.seconds"
-        type="number"
-        id="seconds"
-      />
+    <div class="flex gap-5">
+      <div>
+        <label for="hours">Heures: </label>
+        <input
+          v-model="objParametersRunningCalculator.hours"
+          type="number"
+          id="hours"
+        />
+      </div>
+
+      <div>
+        <label for="minutes">Minutes: </label>
+        <input
+          v-model="objParametersRunningCalculator.minutes"
+          type="number"
+          id="minutes"
+        />
+      </div>
+
+      <div>
+        <label for="seconds">Secondes: </label>
+        <input
+          v-model="objParametersRunningCalculator.seconds"
+          type="number"
+          id="seconds"
+        />
+      </div>
     </div>
 
-    <div>
-      <button @click="calculate">Calculer</button>
+    <div class="w-full flex justify-center">
+      <button
+        @click="calculate"
+        class="bg-black text-white w-full h-14 text-2xl font-extrabold"
+      >
+        C'est parti !
+      </button>
     </div>
 
     <div
@@ -100,17 +118,16 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.container {
-  /* font-family: "Arial", sans-serif; */
-  background-color: #f5f5f5;
-  margin: 0;
+/* .container { */
+/* font-family: "Arial", sans-serif; */
+/* margin: 0;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   height: 100%;
-}
+} */
 h1 {
   color: #333;
   text-align: center;
@@ -132,7 +149,7 @@ input {
   margin-bottom: 10px;
 }
 
-button {
+/* button {
   background-color: #00a699;
   color: #fff;
   padding: 10px;
@@ -141,11 +158,11 @@ button {
   cursor: pointer;
   width: 100%;
   font-size: 16px;
-}
+} */
 
-button:hover {
+/* button:hover {
   background-color: #007d8c;
-}
+} */
 
 h2 {
   margin-top: 20px;
