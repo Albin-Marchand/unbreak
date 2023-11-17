@@ -1,7 +1,7 @@
 <template>
   <!-- <div class="h-full w-full flex flex-col justify-evenly justify-center"> -->
   <div class="h-screen flex flex-col justify-around">
-    <div class="px-6 h-2/3 flex justify-around">
+    <div class="px-6 h-2/3 flex flex-col justify-around">
       <div class="text-center">
         Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
         kilometre. Il vous suffit de rentrer la distance de course et le chonro
@@ -9,7 +9,7 @@
       </div>
       <h1 class="text-2xl font-extrabold">Calculatrice d'allure de course</h1>
 
-      <div>
+      <div class="max-w-sm">
         <label for="distance">Distance (km): </label>
         <input
           v-model="objParametersRunningCalculator.distance"
@@ -19,7 +19,7 @@
         />
       </div>
 
-      <div class="flex gap-5">
+      <div class="flex gap-5 max-w-sm">
         <div>
           <label for="hours">Heures: </label>
           <input
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div class="w-full flex justify-center">
+      <div class="w-full flex justify-center max-w-sm">
         <button
           @click="calculate"
           class="bg-black text-white w-full h-14 text-2xl font-extrabold"
