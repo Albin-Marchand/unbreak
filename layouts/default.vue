@@ -1,5 +1,5 @@
 <template>
-  <div class="layout_wrapper">
+  <div class="h-screen">
     <!-- <div v-if="currentWidth > 700" class="header">
       <div class="title_app" @click="$router.push('/')">
         <div class="title">Unbreak.</div>

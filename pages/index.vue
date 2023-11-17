@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper_running_calculator font-sans">
+  <div class="">
     <RunningCalculator />
   </div>
 </template>
@@ -12,7 +12,7 @@ const layout = "default";
 body {
   margin: 0;
 }
-.wrapper_running_calculator {
+/* .wrapper_running_calculator {
   height: calc(100vh - 100px);
-}
+} */
 </style>

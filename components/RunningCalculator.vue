@@ -1,77 +1,83 @@
 <template>
-  <div class="h-full w-full flex flex-col justify-evenly justify-center px-6">
-    <div class="text-center">
-      Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
-      kilometre. Il vous suffit de rentrer la distance de course et le chonro à
-      réaliser et le tour est joué !
-    </div>
-    <h1 class="text-2xl font-extrabold">Calculatrice d'allure de course</h1>
+  <!-- <div class="h-full w-full flex flex-col justify-evenly justify-center"> -->
+  <div class="h-screen flex flex-col justify-around">
+    <div class="px-6 h-2/3 flex justify-around">
+      <div class="text-center">
+        Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
+        kilometre. Il vous suffit de rentrer la distance de course et le chonro
+        à réaliser et le tour est joué !
+      </div>
+      <h1 class="text-2xl font-extrabold">Calculatrice d'allure de course</h1>
 
-    <div>
-      <label for="distance">Distance (km): </label>
-      <input
-        v-model="objParametersRunningCalculator.distance"
-        type="number"
-        step="0.01"
-        id="distance"
-      />
-    </div>
-
-    <div class="flex gap-5">
       <div>
-        <label for="hours">Heures: </label>
+        <label for="distance">Distance (km): </label>
         <input
-          v-model="objParametersRunningCalculator.hours"
+          v-model="objParametersRunningCalculator.distance"
           type="number"
-          id="hours"
+          step="0.01"
+          id="distance"
         />
       </div>
 
-      <div>
-        <label for="minutes">Minutes: </label>
-        <input
-          v-model="objParametersRunningCalculator.minutes"
-          type="number"
-          id="minutes"
-        />
+      <div class="flex gap-5">
+        <div>
+          <label for="hours">Heures: </label>
+          <input
+            v-model="objParametersRunningCalculator.hours"
+            type="number"
+            id="hours"
+          />
+        </div>
+
+        <div>
+          <label for="minutes">Minutes: </label>
+          <input
+            v-model="objParametersRunningCalculator.minutes"
+            type="number"
+            id="minutes"
+          />
+        </div>
+
+        <div>
+          <label for="seconds">Secondes: </label>
+          <input
+            v-model="objParametersRunningCalculator.seconds"
+            type="number"
+            id="seconds"
+          />
+        </div>
       </div>
 
-      <div>
-        <label for="seconds">Secondes: </label>
-        <input
-          v-model="objParametersRunningCalculator.seconds"
-          type="number"
-          id="seconds"
-        />
+      <div class="w-full flex justify-center">
+        <button
+          @click="calculate"
+          class="bg-black text-white w-full h-14 text-2xl font-extrabold"
+        >
+          C'est parti !
+        </button>
       </div>
-    </div>
 
-    <div class="w-full flex justify-center">
-      <button
-        @click="calculate"
-        class="bg-black text-white w-full h-14 text-2xl font-extrabold"
+      <div
+        v-if="
+          typeof objParametersRunningCalculator.result.speed === 'number' &&
+          objParametersRunningCalculator.result.speed !== 0
+        "
       >
-        C'est parti !
-      </button>
+        <h2>Résultats :</h2>
+        <p>
+          Vitesse moyenne:
+          {{
+            isNaN(objParametersRunningCalculator.result.speed.toFixed(2))
+              ? 0
+              : objParametersRunningCalculator.result.speed.toFixed(2)
+          }}
+          km/h
+        </p>
+        <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
+      </div>
     </div>
-
-    <div
-      v-if="
-        typeof objParametersRunningCalculator.result.speed === 'number' &&
-        objParametersRunningCalculator.result.speed !== 0
-      "
-    >
-      <h2>Résultats :</h2>
-      <p>
-        Vitesse moyenne:
-        {{
-          isNaN(objParametersRunningCalculator.result.speed.toFixed(2))
-            ? 0
-            : objParametersRunningCalculator.result.speed.toFixed(2)
-        }}
-        km/h
-      </p>
-      <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
+    <div class="h-1/3 flex content-end">
+      <img class="" src="@/assets/images/icons/runner_1.jpg" alt="" />
     </div>
   </div>
 </template>
