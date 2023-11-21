@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="h-[calc(100vh-80px)]">
     <RunningCalculator />
   </div>
 </template>
@@ -9,10 +9,7 @@ const layout = "default";
 </script>
 
 <style>
-body {
+/* body {
   margin: 0;
-}
-/* .wrapper_running_calculator {
-  height: calc(100vh - 100px);
 } */
 </style>

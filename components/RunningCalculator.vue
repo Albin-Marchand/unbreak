@@ -1,13 +1,14 @@
 <template>
-  <!-- <div class="h-full w-full flex flex-col justify-evenly justify-center"> -->
-  <div class="h-screen flex flex-col justify-around">
+  <div class="h-full flex flex-col justify-around">
     <div class="px-6 h-2/3 flex flex-col justify-around">
       <div class="text-center">
         Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
         kilometre. Il vous suffit de rentrer la distance de course et le chonro
         à réaliser et le tour est joué !
       </div>
-      <h1 class="text-2xl font-extrabold">Calculatrice d'allure de course</h1>
+      <h1 class="text-2xl font-extrabold text-center">
+        Calculatrice d'allure de course
+      </h1>
 
       <div class="max-w-sm">
         <label for="distance">Distance (km): </label>
@@ -16,34 +17,38 @@
           type="number"
           step="0.01"
           id="distance"
+          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
       </div>
 
       <div class="flex gap-5 max-w-sm">
         <div>
-          <label for="hours">Heures: </label>
+          <label for="hours">Heures :</label>
           <input
             v-model="objParametersRunningCalculator.hours"
             type="number"
             id="hours"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
 
         <div>
-          <label for="minutes">Minutes: </label>
+          <label for="minutes">Minutes :</label>
           <input
             v-model="objParametersRunningCalculator.minutes"
             type="number"
             id="minutes"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
 
         <div>
-          <label for="seconds">Secondes: </label>
+          <label for="seconds">Secondes :</label>
           <input
             v-model="objParametersRunningCalculator.seconds"
             type="number"
             id="seconds"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
       </div>
@@ -76,8 +81,15 @@
         <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
       </div>
     </div>
-    <div class="h-1/3 flex content-end">
-      <img class="" src="@/assets/images/icons/runner_1.jpg" alt="" />
+    <div class="h-1/3 flex content-end relative">
+      <img
+        class="w-full h-auto object-cover"
+        src="@/assets/images/icons/runner_1.jpg"
+        alt=""
+      />
+      <div class="absolute bottom-0 left-0 p-5 text-white">
+        <h1 class="text-5xl font-extrabold">Unbreak.</h1>
+      </div>
     </div>
   </div>
 </template>
@@ -134,11 +146,11 @@ onMounted(() => {
   flex-direction: column;
   height: 100%;
 } */
-h1 {
+/* h1 {
   color: #333;
   text-align: center;
   font-weight: bold;
-}
+} */
 
 label {
   display: block;
@@ -146,14 +158,14 @@ label {
   margin-bottom: 5px;
 }
 
-input {
+/* input {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 10px;
-}
+} */
 
 /* button {
   background-color: #00a699;
@@ -170,8 +182,8 @@ input {
   background-color: #007d8c;
 } */
 
-h2 {
+/* h2 {
   margin-top: 20px;
   color: #333;
-}
+} */
 </style>
