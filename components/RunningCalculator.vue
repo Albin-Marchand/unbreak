@@ -1,12 +1,11 @@
 <template>
   <div class="h-full flex flex-col justify-around">
     <div class="h-full flex flex-col justify-between lg:justify-start">
-      <div class="text-center px-6 pt-6">
+      <p class="text-justify px-6 pt-5 pb-5">
         Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
-        kilometre. <br />
-        Il vous suffit de rentrer la distance de course et le chonro à réaliser
-        et le tour est joué !
-      </div>
+        kilometre. Il vous suffit de rentrer la distance de course et le chonro
+        à réaliser et le tour est joué !
+      </p>
       <h1
         class="text-2xl flex items-center justify-center font-extrabold text-center px-6 lg:h-48"
       >
@@ -67,31 +66,45 @@
                 C'est parti !
               </button>
             </div>
-          </div>
+            <div
+              v-if="
+                typeof objParametersRunningCalculator.result.speed ===
+                  'number' && objParametersRunningCalculator.result.speed !== 0
+              "
+            >
+              <div class="grid grid-rows-2 grid-flow-col gap-2">
+                <div
+                  class="bg-black text-white flex items-center justify-center"
+                >
+                  Vitesse moyenne :
+                </div>
+                <div class="text-2xl text-center font-extrabold">
+                  {{
+                    isNaN(
+                      objParametersRunningCalculator.result.speed.toFixed(2)
+                    )
+                      ? 0
+                      : objParametersRunningCalculator.result.speed.toFixed(2)
+                  }}
+                  km/h
+                </div>
 
-          <!-- <div
-        v-if="
-          typeof objParametersRunningCalculator.result.speed === 'number' &&
-          objParametersRunningCalculator.result.speed !== 0
-        "
-      >
-        <h2>Résultats :</h2>
-        <p>
-          Vitesse moyenne:
-          {{
-            isNaN(objParametersRunningCalculator.result.speed.toFixed(2))
-              ? 0
-              : objParametersRunningCalculator.result.speed.toFixed(2)
-          }}
-          km/h
-        </p>
-        <p>Allure: {{ objParametersRunningCalculator.result.pace }}</p>
-      </div> -->
+                <div
+                  class="bg-black text-white flex items-center justify-center"
+                >
+                  Allure :
+                </div>
+                <div class="text-2xl text-center font-extrabold">
+                  {{ objParametersRunningCalculator.result.pace }}
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div class="flex content-end relative lg:w-1/2">
             <img
               class="w-full h-auto object-cover lg:rounded-tr-lg lg:rounded-br-lg"
-              src="@/assets/images/icons/runner_1.jpg"
+              src="@/assets/images/icons/runner_unbreak_xl.jpg"
               alt=""
             />
             <div class="absolute bottom-0 left-0 p-5 text-white">
@@ -146,54 +159,5 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* .container { */
-/* font-family: "Arial", sans-serif; */
-/* margin: 0;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100%;
-} */
-/* h1 {
-  color: #333;
-  text-align: center;
-  font-weight: bold;
-} */
-
-label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 5px;
-}
-
-/* input {
-  width: 100%;
-  padding: 8px;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-bottom: 10px;
-} */
-
-/* button {
-  background-color: #00a699;
-  color: #fff;
-  padding: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  width: 100%;
-  font-size: 16px;
-} */
-
-/* button:hover {
-  background-color: #007d8c;
-} */
-
-/* h2 {
-  margin-top: 20px;
-  color: #333;
-} */
+/* CSS */
 </style>
