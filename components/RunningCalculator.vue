@@ -1,21 +1,34 @@
 <template>
   <div class="h-full flex flex-col justify-around">
     <div class="h-full flex flex-col justify-between lg:justify-start">
-      <p class="text-justify px-6 pt-5 pb-5">
-        Calculez en un clin d’oeil votre vitesse moyenne et votre allure par
-        kilometre. Il vous suffit de rentrer la distance de course et le chonro
-        à réaliser et le tour est joué !
-      </p>
+      <div class="w-full flex justify-center">
+        <p
+          class="text-justify px-6 pt-5 pb-5 md:w-4/5 md:w2/3 lg:flex lg:flex-col lg:items-center lg:h-28 lg:content-around lg:justify-around"
+        >
+          <span
+            >Calculez en un clin d’oeil votre vitesse moyenne et votre allure
+            par kilometre.</span
+          >
+          <span
+            >Il vous suffit de rentrer la distance de course et le chonro à
+            réaliser et le tour est joué !</span
+          >
+        </p>
+      </div>
       <h1
-        class="text-2xl flex items-center justify-center font-extrabold text-center px-6 lg:h-48"
+        class="text-2xl flex items-center justify-center font-extrabold text-center px-6 lg:h-32"
       >
         Calculatrice d'allure de course
       </h1>
 
-      <div class="flex flex-col lg:max-h-100 mx-auto">
-        <div class="flex flex-col lg:flex-row lg:border-2 lg:rounded-xl">
-          <div class="h-80 flex flex-col justify-around px-6 lg:w-1/2">
-            <div class="max-w-sm">
+      <div class="flex flex-col lg:max-h-100 mx-auto items-center">
+        <div
+          class="flex flex-col lg:flex-row lg:border-2 lg:rounded-xl lg:w-9/12"
+        >
+          <div
+            class="h-80 flex flex-col justify-around px-6 items-center lg:w-1/2 lg:h-full"
+          >
+            <div class="w-full md:w-96 lg:w-96">
               <label for="distance">Distance (km): </label>
               <input
                 v-model="objParametersRunningCalculator.distance"
@@ -67,12 +80,13 @@
               </button>
             </div>
             <div
+              class="grid grid-flow-col gap-2 w-full md:grid-rows-1 md:my-4"
               v-if="
                 typeof objParametersRunningCalculator.result.speed ===
                   'number' && objParametersRunningCalculator.result.speed !== 0
               "
             >
-              <div class="grid grid-rows-2 grid-flow-col gap-2">
+              <div class="">
                 <div
                   class="bg-black text-white flex items-center justify-center"
                 >
@@ -88,7 +102,9 @@
                   }}
                   km/h
                 </div>
+              </div>
 
+              <div class="">
                 <div
                   class="bg-black text-white flex items-center justify-center"
                 >

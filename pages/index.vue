@@ -9,7 +9,5 @@ const layout = "default";
 </script>
 
 <style>
-/* body {
-  margin: 0;
-} */
+/* CSS */
 </style>
