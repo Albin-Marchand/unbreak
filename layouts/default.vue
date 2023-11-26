@@ -23,12 +23,7 @@
         />
       </div> -->
     </div>
-    <div
-      class="modal_menu"
-      :class="[menuMobileIsOpened ? 'active' : 'desactive']"
-    >
-      libellé du futur menu à définir
-    </div>
+    <div class="modal_menu" :class="[menuMobileIsOpened ? 'active' : 'desactive']">libellé du futur menu à définir</div>
     <slot />
   </div>
 </template>
@@ -45,20 +40,17 @@ const openedMobileMenu = () => {
 };
 
 function obtenirLargeurEcran() {
-  var widthScreen =
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
+  var widthScreen = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 
   return widthScreen;
 }
 
 onMounted(() => {
   currentWidth.value = obtenirLargeurEcran();
-  console.log("currentWidth : => ", currentWidth.value);
+  //console.log("currentWidth : => ", currentWidth.value);
   window.addEventListener("resize", () => {
     currentWidth.value = obtenirLargeurEcran();
-    console.log("currentWidth : => ", currentWidth.value);
+    //console.log("currentWidth : => ", currentWidth.value);
   });
 });
 watchEffect(() => {
@@ -96,13 +88,11 @@ watchEffect(() => {
 }
 .burger_icon {
   width: 30px;
-  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%)
-    contrast(102%);
+  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(102%);
 }
 .close_icon {
   width: 40px;
-  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%)
-    contrast(102%);
+  filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(102%);
 }
 .title_mobile_app {
   /* font-weight: bold;
