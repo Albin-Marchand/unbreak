@@ -124,7 +124,7 @@
           <div class="flex content-end relative lg:w-1/2">
             <img
               class="w-full h-auto object-cover lg:rounded-tr-lg lg:rounded-br-lg"
-              src="@/assets/images/icons/runner_unbreak_xl.jpg"
+              src="@/assets/images/icons/runner_unbreak_xl.webp"
               alt=""
             />
             <div class="absolute bottom-0 left-0 p-5 text-white">
