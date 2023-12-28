@@ -18,7 +18,7 @@
       <h1
         class="text-2xl flex items-center justify-center font-extrabold text-center px-6 lg:h-32"
       >
-        Calculatrice d'allure de course
+        Calculatrice d'allure de run
       </h1>
 
       <div class="flex flex-col lg:max-h-100 mx-auto items-center">

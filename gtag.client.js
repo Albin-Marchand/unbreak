@@ -1,3 +1,5 @@
+// GOOGLE ANALYTICS - GTAG
+
 export default defineNuxtPlugin((nuxtApp) => {
   const { gtagId } = useRuntimeConfig().public;
 
