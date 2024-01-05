@@ -6,7 +6,7 @@
           class="text-justify px-6 pt-5 pb-5 md:w-4/5 md:w2/3 lg:flex lg:flex-col lg:items-center lg:h-28 lg:content-around lg:justify-around"
         >
           <span>Calculez en un clin d’oeil votre vitesse moyenne et votre allure par kilometre.</span>
-          <span>Il vous suffit de rentrer la distance de course et le chonro à réaliser et le tour est joué !</span>
+          <span>Il vous suffit de rentrer la distance de course et le chonro à réaliser et le tour est joué !!</span>
         </p>
       </div>
       <h1 class="text-2xl flex items-center justify-center font-extrabold text-center px-6 lg:h-32">
