@@ -1,20 +1,48 @@
 <template>
   <div class="h-screen">
-    <!-- <div v-if="currentWidth > 700" class="header">
-      <div class="title_app" @click="$router.push('/')">
-        <div class="title">Unbreak.</div>
-      </div>
-      <div>Calcul d'allure</div>
-    </div> -->
     <div class="h-20 bg-black text-white flex justify-between items-center">
-      <div class="text-5xl font-extrabold pl-5">Unbreak.</div>
+      <div
+        class="text-5xl font-extrabold pl-5"
+        @click="
+          () => {
+            $router.push('/');
+            openedMobileMenu();
+          }
+        "
+      >
+        Unbreak.
+      </div>
 
-      <div class="cursor-pointer rounded-full flex items-center justify-center pr-5" @click="openedMobileMenu()">
+      <div
+        class="md:hidden cursor-pointer rounded-full flex items-center justify-center pr-5"
+        @click="openedMobileMenu()"
+      >
         <img v-if="!menuMobileIsOpened" class="burger_icon" src="@/assets/images/icons/menu_burger.png" alt="" />
         <img v-else class="close_icon" src="@/assets/images/icons/fermer.png" alt="" />
       </div>
     </div>
-    <!-- <div class="modal_menu" :class="[menuMobileIsOpened ? 'active' : 'desactive']">libellé du futur menu à définir</div> -->
+
+    <div
+      class="md:hidden z-50"
+      :class="
+        menuMobileIsOpened
+          ? 'fixed w-full h-screen bg-orange-700 transition-right duration-300 right-0 '
+          : 'fixed w-full h-screen bg-orange-700 transition-right duration-300 right-[-100vw] '
+      "
+    >
+      <div
+        v-for="(item, index) in listOfMenuLibelle"
+        :key="index"
+        @click="
+          () => {
+            $router.push(item.route);
+            openedMobileMenu();
+          }
+        "
+      >
+        {{ item.libelle }}
+      </div>
+    </div>
     <slot />
   </div>
 </template>
@@ -24,6 +52,10 @@ import { onMounted, ref } from "vue";
 
 const currentWidth = ref("");
 const menuMobileIsOpened = ref(false);
+const listOfMenuLibelle = ref([
+  { libelle: "Calcule ton allure", route: "/calcul-pace" },
+  { libelle: "Calcule ta vitesse moyenne", route: "calcul-vitesse-moyenne" },
+]);
 
 const openedMobileMenu = () => {
   menuMobileIsOpened.value = !menuMobileIsOpened.value;
