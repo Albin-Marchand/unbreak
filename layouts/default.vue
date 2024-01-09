@@ -6,24 +6,15 @@
       </div>
       <div>Calcul d'allure</div>
     </div> -->
-    <div class="h-20 bg-black text-white flex items-center">
+    <div class="h-20 bg-black text-white flex justify-between items-center">
       <div class="text-5xl font-extrabold pl-5">Unbreak.</div>
-      <!-- <div class="burger_menu_wrapper" @click="openedMobileMenu()">
-        <img
-          v-if="!menuMobileIsOpened"
-          class="burger_icon"
-          src="@/assets/images/icons/menu_burger.png"
-          alt=""
-        />
-        <img
-          v-else
-          class="close_icon"
-          src="@/assets/images/icons/fermer.png"
-          alt=""
-        />
-      </div> -->
+
+      <div class="cursor-pointer rounded-full flex items-center justify-center pr-5" @click="openedMobileMenu()">
+        <img v-if="!menuMobileIsOpened" class="burger_icon" src="@/assets/images/icons/menu_burger.png" alt="" />
+        <img v-else class="close_icon" src="@/assets/images/icons/fermer.png" alt="" />
+      </div>
     </div>
-    <div class="modal_menu" :class="[menuMobileIsOpened ? 'active' : 'desactive']">libellé du futur menu à définir</div>
+    <!-- <div class="modal_menu" :class="[menuMobileIsOpened ? 'active' : 'desactive']">libellé du futur menu à définir</div> -->
     <slot />
   </div>
 </template>
@@ -59,30 +50,6 @@ watchEffect(() => {
 </script>
 
 <style>
-.layout_wrapper {
-  height: 100vh;
-  width: 100vw;
-  position: relative;
-}
-.header_mobile {
-  height: 80px;
-  background-color: #00a699;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0px 40px;
-}
-
-.burger_menu_wrapper {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 .burger_menu_wrapper:hover {
   background-color: #007d8c;
 }
