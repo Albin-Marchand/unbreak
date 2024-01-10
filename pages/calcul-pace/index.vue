@@ -2,7 +2,7 @@
   <div class="h-[calc(100vh-80px)]">
     <RunningCalculator />
   </div>
-  <div></div>
+  <!-- <div></div> -->
 </template>
 
 <script setup>

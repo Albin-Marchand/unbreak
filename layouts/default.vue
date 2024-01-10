@@ -15,7 +15,7 @@
 
       <div class="hidden md:flex pr-5 justify-center gap-10">
         <div
-          class="hover:text-slate-400 cursor-pointer"
+          class="hover:text-slate-400 cursor-pointer font-bold"
           v-for="(item, index) in listOfMenuLibelle"
           :key="index"
           @click="
@@ -33,17 +33,12 @@
         @click="openedMobileMenu()"
       >
         <img v-if="!menuMobileIsOpened" class="burger_icon" src="@/assets/images/icons/menu_burger.png" alt="" />
-        <img
-          v-else
-          class="w-10 filter invert-99 sepia-3 saturate-0 hue-rotate-193 brightness-106 contrast-102"
-          src="@/assets/images/icons/fermer.png"
-          alt=""
-        />
+        <img v-else class="close_icon" src="@/assets/images/icons/fermer.png" alt="" />
       </div>
     </div>
 
     <div
-      class="md:hidden z-50"
+      class="md:hidden z-50 flex flex-col items-start gap-7 px-5 py-5"
       :class="
         menuMobileIsOpened
           ? 'fixed w-full h-screen bg-gray-50 transition-right duration-300 right-0 '
@@ -51,6 +46,7 @@
       "
     >
       <div
+        class="cursor-pointer hover:text-slate-400 text-lg font-bold"
         v-for="(item, index) in listOfMenuLibelle"
         :key="index"
         @click="
