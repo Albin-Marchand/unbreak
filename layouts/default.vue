@@ -2,7 +2,7 @@
   <div class="h-screen">
     <div class="h-20 bg-black text-white flex justify-between items-center">
       <div
-        class="text-5xl font-extrabold pl-5"
+        class="text-5xl font-extrabold pl-5 cursor-pointer"
         @click="
           () => {
             $router.push('/');
@@ -13,12 +13,32 @@
         Unbreak.
       </div>
 
+      <div class="hidden md:flex pr-5 justify-center gap-10">
+        <div
+          class="hover:text-slate-400 cursor-pointer"
+          v-for="(item, index) in listOfMenuLibelle"
+          :key="index"
+          @click="
+            () => {
+              $router.push(item.route);
+            }
+          "
+        >
+          {{ item.libelle }}
+        </div>
+      </div>
+
       <div
         class="md:hidden cursor-pointer rounded-full flex items-center justify-center pr-5"
         @click="openedMobileMenu()"
       >
         <img v-if="!menuMobileIsOpened" class="burger_icon" src="@/assets/images/icons/menu_burger.png" alt="" />
-        <img v-else class="close_icon" src="@/assets/images/icons/fermer.png" alt="" />
+        <img
+          v-else
+          class="w-10 filter invert-99 sepia-3 saturate-0 hue-rotate-193 brightness-106 contrast-102"
+          src="@/assets/images/icons/fermer.png"
+          alt=""
+        />
       </div>
     </div>
 
@@ -26,8 +46,8 @@
       class="md:hidden z-50"
       :class="
         menuMobileIsOpened
-          ? 'fixed w-full h-screen bg-orange-700 transition-right duration-300 right-0 '
-          : 'fixed w-full h-screen bg-orange-700 transition-right duration-300 right-[-100vw] '
+          ? 'fixed w-full h-screen bg-gray-50 transition-right duration-300 right-0 '
+          : 'fixed w-full h-screen bg-gray-50 transition-right duration-300 right-[-100vw] '
       "
     >
       <div
@@ -70,21 +90,15 @@ function obtenirLargeurEcran() {
 
 onMounted(() => {
   currentWidth.value = obtenirLargeurEcran();
-  //console.log("currentWidth : => ", currentWidth.value);
+
   window.addEventListener("resize", () => {
     currentWidth.value = obtenirLargeurEcran();
-    //console.log("currentWidth : => ", currentWidth.value);
   });
 });
-watchEffect(() => {
-  // console.log(currentWidth.value);
-});
+watchEffect(() => {});
 </script>
 
 <style>
-.burger_menu_wrapper:hover {
-  background-color: #007d8c;
-}
 .burger_icon {
   width: 30px;
   filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(102%);
@@ -92,66 +106,5 @@ watchEffect(() => {
 .close_icon {
   width: 40px;
   filter: invert(99%) sepia(3%) saturate(0%) hue-rotate(193deg) brightness(106%) contrast(102%);
-}
-.title_mobile_app {
-  /* font-weight: bold;
-  font-size: 28px; */
-}
-
-.modal_menu {
-  position: fixed;
-  width: 60vw;
-  height: 100vh;
-  background-color: white;
-  transition: right 0.3s;
-}
-
-.modal_menu.active {
-  right: 0;
-  transition: right 0.3s;
-}
-
-.modal_menu.desactive {
-  right: -60vw;
-  transition: right 0.3s;
-}
-
-@media (min-width: 701px) {
-  .header {
-    height: 100px;
-    background-color: #00a699;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0px 40px;
-  }
-  .title_app {
-    font-size: 46px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    position: relative;
-    width: 256px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .dot_logo {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    border: 1px solid white;
-    color: white;
-    background-color: white;
-    position: absolute;
-    /* right: 12%;
-  bottom: 20%; */
-    right: 75px;
-    bottom: 16%;
-  }
-  .modal_menu {
-    display: none;
-  }
 }
 </style>
