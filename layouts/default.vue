@@ -69,8 +69,8 @@ import { onMounted, ref } from "vue";
 const currentWidth = ref("");
 const menuMobileIsOpened = ref(false);
 const listOfMenuLibelle = ref([
-  { libelle: "Calcule ton allure", route: "/calcul-pace" },
-  { libelle: "Calcule ta vitesse moyenne", route: "calcul-vitesse-moyenne" },
+  { libelle: "Calcule ton allure", route: "/calcul-allure-course" },
+  { libelle: "Calcule ta vitesse / temps moyen", route: "/calcul-vitesse-temps-moyen-course" },
 ]);
 
 const openedMobileMenu = () => {
