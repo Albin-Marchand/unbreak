@@ -66,6 +66,8 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
+const router = useRouter();
+
 const currentWidth = ref("");
 const menuMobileIsOpened = ref(false);
 const listOfMenuLibelle = ref([
@@ -90,6 +92,8 @@ onMounted(() => {
   window.addEventListener("resize", () => {
     currentWidth.value = obtenirLargeurEcran();
   });
+
+  console.log("router: => ", router.currentRoute.value);
 });
 watchEffect(() => {});
 </script>

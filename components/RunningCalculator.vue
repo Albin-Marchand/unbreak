@@ -133,14 +133,17 @@ function calculate() {
       : (objParametersRunningCalculator.value[key] = value);
   }
 
-  const totalMinutes = parseInt(
+  const totalMinutes =
     objParametersRunningCalculator.value.hours * 60 +
-      parseInt(objParametersRunningCalculator.value.minutes) +
-      parseInt(objParametersRunningCalculator.value.seconds) / 60
-  );
+    parseInt(objParametersRunningCalculator.value.minutes) +
+    parseInt(objParametersRunningCalculator.value.seconds) / 60;
+
   const pace = totalMinutes / objParametersRunningCalculator.value.distance;
+
   const paceMinutes = Math.floor(pace);
+
   const paceSeconds = Math.round((pace - paceMinutes) * 60);
+
   objParametersRunningCalculator.value.result = {
     speed: objParametersRunningCalculator.value.distance / (totalMinutes / 60),
     pace:
@@ -162,9 +165,9 @@ function ResetSeconds() {
   objParametersRunningCalculator.value.seconds = "";
 }
 onMounted(() => {
-  console.log(process.env.NODE_ENV);
-  console.log("objParametersRunningCalculator => ", objParametersRunningCalculator.value);
-  console.log("Store =>", paces.paces);
+  //console.log(process.env.NODE_ENV);
+  //console.log("objParametersRunningCalculator => ", objParametersRunningCalculator.value);
+  //console.log("Store =>", paces.paces);
 });
 </script>
 
