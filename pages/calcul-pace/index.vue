@@ -1,15 +1,14 @@
 <template>
   <div class="h-[calc(100vh-80px)]">
-    <RunningVitesseCalculator />
+    <RunningCalculator />
   </div>
+  <!-- <div></div> -->
 </template>
 
 <script setup>
 const layout = "default";
-
-const router = useRouter();
 </script>
 
-<style scoped>
+<style>
 /* CSS */
 </style>

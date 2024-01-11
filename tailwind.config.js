@@ -13,6 +13,9 @@ export default {
       fontFamily: {
         sans: ["Montserrat", "sans-serif"],
       },
+      width: {
+        custom_menu: "60vw",
+      },
     },
   },
   plugins: [],

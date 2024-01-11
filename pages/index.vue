@@ -1,7 +1,5 @@
 <template>
-  <div class="h-[calc(100vh-80px)]">
-    <RunningCalculator />
-  </div>
+  <div class="h-[calc(100vh-80px)]">HOME PAGE</div>
 </template>
 
 <script setup>
