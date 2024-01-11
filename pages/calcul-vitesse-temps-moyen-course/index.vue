@@ -10,6 +10,6 @@ const layout = "default";
 const router = useRouter();
 </script>
 
-<style>
+<style scoped>
 /* CSS */
 </style>
