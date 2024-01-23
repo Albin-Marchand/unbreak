@@ -68,6 +68,7 @@
                 C'est parti !
               </button>
             </div>
+
             <div
               class="grid grid-flow-col gap-2 w-full md:grid-rows-1 md:my-4"
               v-if="
@@ -94,6 +95,9 @@
                 </div>
               </div>
             </div>
+            <div class="font-semibold text-red-500" v-if="error !== ''">
+              {{ error }}
+            </div>
           </div>
 
           <div class="flex content-end relative lg:w-1/2">
@@ -118,6 +122,7 @@ import { usePacesStore } from "@/stores/paces";
 
 const paces = usePacesStore();
 
+const error = ref("");
 const objParametersRunningCalculator = ref({
   distance: 0,
   hours: 0,
@@ -127,28 +132,51 @@ const objParametersRunningCalculator = ref({
 });
 
 function calculate() {
+  error.value = "";
+
   for (const [key, value] of Object.entries(objParametersRunningCalculator.value)) {
     value === ""
       ? (objParametersRunningCalculator.value[key] = 0)
       : (objParametersRunningCalculator.value[key] = value);
   }
 
-  const totalMinutes = parseInt(
-    objParametersRunningCalculator.value.hours * 60 +
-      parseInt(objParametersRunningCalculator.value.minutes) +
-      parseInt(objParametersRunningCalculator.value.seconds) / 60
-  );
-  const pace = totalMinutes / objParametersRunningCalculator.value.distance;
-  const paceMinutes = Math.floor(pace);
-  const paceSeconds = Math.round((pace - paceMinutes) * 60);
-  objParametersRunningCalculator.value.result = {
-    speed: objParametersRunningCalculator.value.distance / (totalMinutes / 60),
-    pace:
-      isNaN(paceMinutes) && isNaN(paceSeconds)
-        ? 0 + "min/km"
-        : `${paceMinutes}'${paceSeconds.toString().length > 1 ? paceSeconds : "0" + paceSeconds}" min/km`,
-  };
+  const isGoodCheck = checkInputsUsers();
+
+  if (isGoodCheck) {
+    const totalMinutes = parseInt(
+      objParametersRunningCalculator.value.hours * 60 +
+        parseInt(objParametersRunningCalculator.value.minutes) +
+        parseInt(objParametersRunningCalculator.value.seconds) / 60
+    );
+    const pace = totalMinutes / objParametersRunningCalculator.value.distance;
+    const paceMinutes = Math.floor(pace);
+    const paceSeconds = Math.round((pace - paceMinutes) * 60);
+    objParametersRunningCalculator.value.result = {
+      speed: objParametersRunningCalculator.value.distance / (totalMinutes / 60),
+      pace:
+        isNaN(paceMinutes) && isNaN(paceSeconds)
+          ? 0 + "min/km"
+          : `${paceMinutes}'${paceSeconds.toString().length > 1 ? paceSeconds : "0" + paceSeconds}" min/km`,
+    };
+  } else {
+    objParametersRunningCalculator.value.result.speed = 0;
+    objParametersRunningCalculator.value.result.pace = "";
+    error.value = "Veuillez entrer une distance et un temps afin de poursuivre";
+  }
 }
+function checkInputsUsers() {
+  if (
+    objParametersRunningCalculator.value.distance === 0 ||
+    (objParametersRunningCalculator.value.hours === 0 &&
+      objParametersRunningCalculator.value.minutes === 0 &&
+      objParametersRunningCalculator.value.seconds === 0)
+  ) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 function ResetDistance() {
   objParametersRunningCalculator.value.distance = "";
 }
