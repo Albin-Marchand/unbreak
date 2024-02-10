@@ -6,7 +6,6 @@
         @click="
           () => {
             $router.push('/');
-            openedMobileMenu();
           }
         "
       >
@@ -71,6 +70,7 @@ const menuMobileIsOpened = ref(false);
 const listOfMenuLibelle = ref([
   { libelle: "Calcule ton allure", route: "/calcul-allure-course" },
   { libelle: "Calcule ta vitesse / temps moyen", route: "/calcul-vitesse-temps-moyen-course" },
+  { libelle: "Run GPT", route: "/ai-run-gpt" },
 ]);
 
 const openedMobileMenu = () => {
